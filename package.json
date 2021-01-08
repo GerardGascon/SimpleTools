@@ -1,0 +1,23 @@
+{
+  "name": "com.geri.simpletools",
+  "version": "1.0.0",
+  "displayName": "Simple Tools",
+  "description": "This package contains simple tools to use in your project.",
+  "unity": "2018.4",
+  "unityRelease": "30f1",
+  "dependencies": {
+    "com.unity.cinemachine": "2.2.0",
+    "com.unity.textmeshpro": "1.0.21"
+  },
+  "keywords": [
+    "gamejam",
+    "simple",
+    "easy"
+  ],
+  "author": {
+    "name": "Geri",
+    "email": "ggasconmoline@gmail.com",
+    "url": "https://geri8.itch.io/"
+  },
+  "type": "commonjs"
+}

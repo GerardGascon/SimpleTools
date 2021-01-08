@@ -1,0 +1,24 @@
+{
+    "name": "SimpleTools",
+    "rootNamespace": "",
+    "references": [
+        "Cinemachine",
+        "TMP_Runtime-CSharp",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.cinemachine",
+            "expression": "2.7.1",
+            "define": "CINEMACHINE_271_OR_NEWER"
+        }
+    ],
+    "noEngineReferences": false
+}

@@ -1,0 +1,31 @@
+﻿using Cinemachine;
+using UnityEngine;
+
+public static class ScreenShake{
+
+    static CinemachineVirtualCamera vCam;
+    static ScreenShakeUpdate shakeUpdate;
+
+    class ScreenShakeUpdate : MonoBehaviour {
+        [HideInInspector] public float shakeTimer;
+        [HideInInspector] public float shakeTimerTotal;
+        [HideInInspector] public float startingIntensity;
+
+        void Update(){
+            if (shakeTimer > 0){
+                shakeTimer -= Time.deltaTime;
+                CinemachineBasicMultiChannelPerlin multiChannelPerlin = vCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+                multiChannelPerlin.m_AmplitudeGain = Mathf.Lerp(startingIntensity, 0f, 1 - (shakeTimer / shakeTimerTotal));
+            }
+        }
+    }
+
+    public static void Shake(float intensity, float time){
+        if(vCam == null || shakeUpdate == null){
+            vCam = Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
+            shakeUpdate = new GameObject("ShakeUpdate").AddComponent<ScreenShakeUpdate>();
+        }
+        shakeUpdate.startingIntensity = intensity;
+        shakeUpdate.shakeTimer = shakeUpdate.shakeTimerTotal = time;
+    }
+}
