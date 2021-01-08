@@ -170,6 +170,7 @@ public class ToolsEditor{
         progressBar.gameObject.AddComponent<LoadingProgressBar>();
     }
 
+#if UNITY_2019_3_OR_NEWER
     [MenuItem("Assets/Create/Tools/Create Menu Scene")]
     static void CreateMenuScene(){
         EditorSceneManager.SaveOpenScenes();
@@ -528,4 +529,5 @@ public class ToolsEditor{
         }
     }
     #endregion
+#endif
 }

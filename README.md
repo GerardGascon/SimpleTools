@@ -1,5 +1,9 @@
 # Simple Tools
 
+This package contains simple tools to use in your project.
+
+This package will be updated once I find another useful tool or someone suggest me one.
+
 ## Features
 
 - **AudioManager** with Play, Pause and most of the other basic things, as well as some effects like FadeIn or FadeOut.
@@ -17,11 +21,11 @@ First install the TextMeshPro and Cinemachine into your Unity project
 
 ### Git Installation (Best way to get latest version)
 
-If you have git in your computer, you can open Package Manager inside Unity, select "Add package from Git url...", and paste link [https://github.com/IntoTheDev/Save-System-for-Unity.git](https://github.com/IntoTheDev/Save-System-for-Unity.git)
+If you have git in your computer, you can open Package Manager inside Unity, select "Add package from Git url...", and paste link [https://github.com/Geri8/SimpleTools.git](https://github.com/Geri8/SimpleTools.git)
 
 or
 
-Open the manifest.json file of your Unity project. Add "com.geri.simpletools": "[https://github.com/IntoTheDev/Save-System-for-Unity.git](https://github.com/IntoTheDev/Save-System-for-Unity.git)"
+Open the manifest.json file of your Unity project. Add "com.geri.simpletools": "[https://github.com/Geri8/SimpleTools.git](https://github.com/Geri8/SimpleTools.git)"
 
 ### Manual Installation
 
@@ -35,6 +39,7 @@ Download latest package from the Release section Import SimpleTools.unitypackage
 AudioManager.instance.Play("Name"); //Plays the sound with that name
 AudioManager.instance.Play("Name", 1f); //Starts playing the sound "Name" in 1 second
 AudioManager.instance.PlayOneShot("Name"); //Plays one shot of that sound (Useful for repeated sounds)
+AudioManager.instance.PlayWithIntro("Intro", "Loop"); //Plays the intro and then the loop
 
 AudioManager.instance.Pause("Name"); //Pauses the sound
 AudioManager.instance.UnPause("Name"); //Unpauses the sound
@@ -90,3 +95,9 @@ Loader.Load("Scene"); //Loads a scene with a specific name
 ```csharp
 ScreenShake.Shake(1f, .25f); //Shakes the camera with an intensity and duration
 ```
+
+### Editor
+
+You can easily set up some things by right clicking in your Project Tab and then selecting Tools and clicking on the one you want to create.
+
+Also you can right click in the Hierarchy for easily creating some GameObjects with the Tools in it.

@@ -73,6 +73,19 @@ public class AudioManager : MonoBehaviour{
         s.source.volume = s.RandomVolume;
         s.source.PlayOneShot(s.clip);
     }
+    public void PlayWithIntro(string intro, string song){
+        Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == intro);
+        if (s == null){
+            Debug.LogWarning("Sound: " + intro + " not found!");
+            return;
+        }
+        s.source.pitch = s.RandomPitch;
+        s.source.volume = s.RandomVolume;
+        s.source.Play();
+
+        float introDuration = s.clip.length;
+        Play(song, introDuration);
+    }
     #endregion
     #region Pause
     public void Pause(string name){

@@ -7,7 +7,7 @@
   "unityRelease": "30f1",
   "dependencies": {
     "com.unity.cinemachine": "2.2.0",
-    "com.unity.textmeshpro": "1.0.21"
+    "com.unity.textmeshpro": "1.4.1"
   },
   "keywords": [
     "gamejam",
