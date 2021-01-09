@@ -43,6 +43,9 @@ public class AudioManager : MonoBehaviour{
     }
 
     #region Play
+    /// <summary>Use this to play a sound with a specific name
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void Play(string name){
         Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
         if(s == null){
@@ -53,6 +56,9 @@ public class AudioManager : MonoBehaviour{
         s.source.volume = s.RandomVolume;
         s.source.Play();
     }
+    /// <summary>Use this to play a sound with a specific name and with a certain delay
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void Play(string name, float delay){
         Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
         if (s == null){
@@ -63,6 +69,9 @@ public class AudioManager : MonoBehaviour{
         s.source.volume = s.RandomVolume;
         s.source.PlayDelayed(delay);
     }
+    /// <summary>Use this to play one shot of a sound with a specific name
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void PlayOneShot(string name){
         Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
         if (s == null){
@@ -73,6 +82,9 @@ public class AudioManager : MonoBehaviour{
         s.source.volume = s.RandomVolume;
         s.source.PlayOneShot(s.clip);
     }
+    /// <summary>Use this to play an intro song and then start playing the song loop
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void PlayWithIntro(string intro, string song){
         Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == intro);
         if (s == null){
@@ -88,6 +100,9 @@ public class AudioManager : MonoBehaviour{
     }
     #endregion
     #region Pause
+    /// <summary>Use this to pause a sound with a specific name
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void Pause(string name){
         Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
         if (s == null){
@@ -98,6 +113,9 @@ public class AudioManager : MonoBehaviour{
         s.source.volume = s.RandomVolume;
         s.source.Pause();
     }
+    /// <summary>Use this to unpause a sound with a specific name
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void UnPause(string name){
         Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
         if (s == null){
@@ -110,6 +128,9 @@ public class AudioManager : MonoBehaviour{
     }
     #endregion
     #region Stop
+    /// <summary>Use this to stop a sound with a specific name
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void Stop(string name){
         Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
         if (s == null){
@@ -120,6 +141,9 @@ public class AudioManager : MonoBehaviour{
         s.source.volume = s.RandomVolume;
         s.source.Stop();
     }
+    /// <summary>Use this to stop all the sounds
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void StopAll(){
         foreach (Sounds.List s in soundList.sounds){
             if (s.source){
@@ -128,6 +152,9 @@ public class AudioManager : MonoBehaviour{
         }
     }
     #endregion
+    /// <summary>This function returns the AudioSource that contains a specific sound
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public AudioSource GetSource(string name){
         Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
         if (s == null){
@@ -137,6 +164,9 @@ public class AudioManager : MonoBehaviour{
         return s.source;
     }
     #region Fades
+    /// <summary>Use this to start playing a sound with a fade in
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void FadeIn(string name, float duration){
         StartCoroutine(FadeInCoroutine(name, duration));
     }
@@ -154,6 +184,9 @@ public class AudioManager : MonoBehaviour{
             audioSource.volume = volume;
         }
     }
+    /// <summary>Use this to stop playing a sound with a fade out
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void FadeOut(string name, float duration){
         StartCoroutine(FadeOutCoroutine(name, duration));
     }
@@ -173,6 +206,9 @@ public class AudioManager : MonoBehaviour{
         }
     }
 
+    /// <summary>Use this to start playing a sound muted
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void PlayMuted(string name){
         Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
         if (s == null){
@@ -183,6 +219,10 @@ public class AudioManager : MonoBehaviour{
         s.source.volume = 0f;
         s.source.Play();
     }
+    /// <summary>Use this to fade in a sound that is currently muted
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// <para>WARNING: If the PlayMuted hasn't been called before, this function won't work</para>
+    /// </summary>
     public void FadeMutedIn(string name, float duration){
         StartCoroutine(FadeMutedInCoroutine(name, duration));
     }
@@ -199,6 +239,9 @@ public class AudioManager : MonoBehaviour{
         }
         s.source.volume = s.volume;
     }
+    /// <summary>Use this to fade out a sound and keep playing that muted
+    /// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
+    /// </summary>
     public void FadeMutedOut(string name, float duration){
         StartCoroutine(FadeMutedOutCoroutine(name, duration));
     }

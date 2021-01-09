@@ -22,6 +22,9 @@ public class DialogueSystem : MonoBehaviour{
         anim = GetComponent<Animator>();
     }
 
+    /// <summary>Start or continue the dialogue
+    /// <para>This function returns false if the dialogue has ended.</para>
+    /// </summary>
     public bool Dialogue(Dialogue dialogue){
         if(!talking){
             if (dialogue.displayName){

@@ -66,6 +66,8 @@ Pool pool; //The pool scriptable object goes here
 Pooler.CreatePools(pool); //Create the pool, without creating it you cannot spawn it
 Pool[] pools;
 Pooler.CreatePools(pools); //Create multiple pools
+Pooler.Destroy(gameObject); //Destroys a GameObject and returns it into the pool scene
+
 Pooler.SpawnFromPool("Name", Vector3.zero); //Spawns an object into a specific position
 Pooler.SpawnFromPool("Name", Vector3.zero, Quaternion.identity); //Spawn into a specific position and rotation
 Pooler.SpawnFromPool("Name", Vector3.zero, transform); //Spawn into a specific position and parent

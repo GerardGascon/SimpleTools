@@ -10,6 +10,9 @@ public static class Loader{
     static Action onLoaderCallback;
     static AsyncOperation loadingAsyncOperation;
 
+    /// <summary>Load a scene with a loading scene
+    /// <para>It requires a scene called "Loading" where the loading screen is located.</para>
+    /// </summary>
     public static void Load(int scene){
         onLoaderCallback = () => {
             GameObject loadingGameObject = new GameObject("LoadingGameObject");
@@ -18,6 +21,9 @@ public static class Loader{
 
         SceneManager.LoadScene("Loading");
     }
+    /// <summary>Load a scene with a loading scene
+    /// <para>It requires a scene called "Loading" where the loading screen is located.</para>
+    /// </summary>
     public static void Load(string scene){
         onLoaderCallback = () => {
             GameObject loadingGameObject = new GameObject("LoadingGameObject");
@@ -44,6 +50,8 @@ public static class Loader{
         }
     }
 
+    /// <summary>Returns the loading progress
+    /// </summary>
     public static float GetLoadingProgress(){
         if(loadingAsyncOperation != null){
             return loadingAsyncOperation.progress;
