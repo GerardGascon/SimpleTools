@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 
-[CreateAssetMenu(fileName = "Sounds", menuName = "Tools/Sounds", order = 0)]
+[CreateAssetMenu(fileName = "Sounds", menuName = "Simple Tools/Sounds", order = 11)]
 public class Sounds : ScriptableObject{
 
     [Tooltip("The music mixer.")]

@@ -8,12 +8,17 @@ namespace TMPro{
 
     public class TMP_Animated : TextMeshProUGUI{
 
-        float speed;
+        float speed = 20;
 
         public TextRevealEvent onTextReveal;
         public DialogueEvent onDialogueFinish;
 
-        public void ReadText(string newText){
+		void Update(){
+            /*if(Application.isPlaying)
+                this.Animate();*/
+        }
+
+		public void ReadText(string newText){
             text = string.Empty;
 
             string[] subTexts = newText.Split('<', '>');
@@ -27,7 +32,7 @@ namespace TMPro{
             }
 
             bool isCustomTag(string tag){
-                return tag.StartsWith("speed=") || tag.StartsWith("pause=");
+                return tag.StartsWith("speed=") || tag.StartsWith("pause=") || tag.StartsWith("wave") || tag.StartsWith("rainbow") || tag.StartsWith("shake");
             }
 
             text = displayText;
@@ -45,7 +50,9 @@ namespace TMPro{
                             onTextReveal.Invoke(subTexts[subCounter][visibleCounter]);
                             visibleCounter++;
                             maxVisibleCharacters++;
-                            yield return new WaitForSeconds(1f / speed);
+                            //this.Animate();
+
+                            yield return new WaitForSeconds(text[maxVisibleCharacters - 1] == ' ' ? 0 : (1f / speed));
                         }
                         visibleCounter = 0;
                     }

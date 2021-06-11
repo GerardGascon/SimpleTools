@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Character", menuName = "Tools/Character", order = 0)]
+[CreateAssetMenu(fileName = "New Character", menuName = "Simple Tools/Character", order = 11)]
 public class Dialogue : ScriptableObject{
 
     public bool displayName;

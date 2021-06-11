@@ -21,11 +21,11 @@ First install the TextMeshPro and Cinemachine into your Unity project
 
 ### Git Installation (Best way to get latest version)
 
-If you have git in your computer, you can open Package Manager inside Unity, select "Add package from Git url...", and paste link [https://github.com/GerardGascon/SimpleTools.git](https://github.com/GerardGascon/SimpleTools.git)
+If you have git in your computer, you can open Package Manager inside Unity, select "Add package from Git url...", and paste link [https://github.com/Geri8/SimpleTools.git](https://github.com/Geri8/SimpleTools.git)
 
 or
 
-Open the manifest.json file of your Unity project. Add "com.geri.simpletools": "[https://github.com/GerardGascon/SimpleTools.git](https://github.com/GerardGascon/SimpleTools.git)"
+Open the manifest.json file of your Unity project. Add "com.geri.simpletools": "[https://github.com/Geri8/SimpleTools.git](https://github.com/Geri8/SimpleTools.git)"
 
 ### Manual Installation
 

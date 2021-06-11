@@ -1,4 +1,3 @@
-#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,13 +13,13 @@ using System;
 
 public class ToolsEditor{
     
-    [MenuItem("GameObject/Tools/AudioManager", false, 10)]
+    [MenuItem("GameObject/Simple Tools/AudioManager", false, 10)]
     static void CreateAudioManager(){
         GameObject audioManager = new GameObject("AudioManager");
         audioManager.AddComponent<AudioManager>();
     }
 
-    [MenuItem("GameObject/Tools/Dialogue System", false, 10)]
+    [MenuItem("GameObject/Simple Tools/Dialogue System", false, 10)]
     static void CreateDialogueSystem(){
         GameObject dialogueCanvas = new GameObject("DialogueCanvas");
         dialogueCanvas.AddComponent<RectTransform>();
@@ -51,7 +50,7 @@ public class ToolsEditor{
         dialogueSystem.nameField = name;
     }
 
-    [MenuItem("GameObject/Tools/Camera Trigger/2D", false, 10)]
+    [MenuItem("GameObject/Simple Tools/Camera Trigger/2D", false, 10)]
     static void CreateCameraTrigger2D(){
         GameObject cameraTrigger = new GameObject("CameraTrigger2D");
         cameraTrigger.AddComponent<BoxCollider2D>();
@@ -64,7 +63,7 @@ public class ToolsEditor{
         cam.m_Lens.Orthographic = true;
     }
 
-    [MenuItem("GameObject/Tools/Camera Trigger/3D", false, 10)]
+    [MenuItem("GameObject/Simple Tools/Camera Trigger/3D", false, 10)]
     static void CreateCameraTrigger3D(){
         GameObject cameraTrigger = new GameObject("CameraTrigger3D");
         cameraTrigger.AddComponent<BoxCollider>();
@@ -78,7 +77,7 @@ public class ToolsEditor{
     }
 
 #if CINEMACHINE_271_OR_NEWER
-    [MenuItem("GameObject/Tools/ScreenShake Camera/2D", false, 10)]
+    [MenuItem("GameObject/Simple Tools/ScreenShake Camera/2D", false, 10)]
     static void CreateScreenShakeCamera2d(){
         GameObject screenShakeCamera = new GameObject("ScreenShakeCamera");
         CinemachineVirtualCamera vCam = screenShakeCamera.AddComponent<CinemachineVirtualCamera>();
@@ -92,7 +91,7 @@ public class ToolsEditor{
         shake.m_AmplitudeGain = 0f;
         shake.m_FrequencyGain = 1f;
     }
-    [MenuItem("GameObject/Tools/ScreenShake Camera/3D", false, 10)]
+    [MenuItem("GameObject/Simple Tools/ScreenShake Camera/3D", false, 10)]
     static void CreateScreenShakeCamera3d(){
         GameObject screenShakeCamera = new GameObject("ScreenShakeCamera");
         CinemachineVirtualCamera vCam = screenShakeCamera.AddComponent<CinemachineVirtualCamera>();
@@ -107,7 +106,7 @@ public class ToolsEditor{
         shake.m_FrequencyGain = 1f;
     }
 #else
-    [MenuItem("GameObject/Tools/ScreenShake Camera", false, 10)]
+    [MenuItem("GameObject/Simple Tools/ScreenShake Camera", false, 10)]
     static void CreateScreenShakeCamera2d(){
         GameObject screenShakeCamera = new GameObject("ScreenShakeCamera");
         CinemachineVirtualCamera vCam = screenShakeCamera.AddComponent<CinemachineVirtualCamera>();
@@ -122,7 +121,8 @@ public class ToolsEditor{
     }
 #endif
 
-    [MenuItem("Assets/Create/Tools/Create Loading Scene")]
+    [MenuItem("Assets/Create/Simple Tools/Create Loading Scene")]
+    [MenuItem("Simple Tools/Create Loading Scene")]
     static void CreateLoadingScene(){
         EditorSceneManager.SaveOpenScenes();
 
@@ -163,7 +163,7 @@ public class ToolsEditor{
         progressBarTransform.anchoredPosition = Vector2.zero;
         progressBarTransform.sizeDelta = new Vector2Int(900, 20);
 
-        progressBar.sprite = (Sprite)AssetDatabase.LoadAssetAtPath("Packages/com.geri.simpletools/Tools/Editor/Square.png", typeof(Sprite));
+        progressBar.sprite = (Sprite)AssetDatabase.LoadAssetAtPath("Packages/com.geri.simpletools/Simple Tools/Editor/Square.png", typeof(Sprite));
         progressBar.type = Image.Type.Filled;
         progressBar.fillMethod = Image.FillMethod.Horizontal;
         progressBar.fillOrigin = (int)Image.OriginHorizontal.Left;
@@ -172,7 +172,8 @@ public class ToolsEditor{
     }
 
 #if UNITY_2019_3_OR_NEWER
-    [MenuItem("Assets/Create/Tools/Create Menu Scene")]
+    [MenuItem("Assets/Create/Simple Tools/Create Menu Scene")]
+    [MenuItem("Simple Tools/Create Menu Scene")]
     static void CreateMenuScene(){
         EditorSceneManager.SaveOpenScenes();
 
@@ -532,4 +533,3 @@ public class ToolsEditor{
     #endregion
 #endif
 }
-#endif

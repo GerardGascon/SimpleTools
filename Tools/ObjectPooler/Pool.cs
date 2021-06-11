@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Pool", menuName = "Tools/Pool", order = 0)]
+[CreateAssetMenu(fileName = "New Pool", menuName = "Simple Tools/Pool", order = 11)]
 public class Pool : ScriptableObject{
 
     public List<PoolPrefab> pools;
