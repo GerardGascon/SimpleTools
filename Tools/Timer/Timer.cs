@@ -17,13 +17,21 @@ namespace SimpleTools.Timer{
 		public TMP_Text TimerText { get { return timer; } }
 		TimerType timerType;
 		public TimerType TimerType { get { return timerType; } }
+		TimerUpdate timerUpdate;
+		public TimerUpdate TimerUpdate { get { return timerUpdate; } }
 
-		public void Setup(float elapsedTime, bool isPaused, TimeSpan timePlaying, TMP_Text timer, TimerType timerType, string text){
-			this.elapsedTime = elapsedTime;
+		float defaultTime;
+
+		/// <summary>
+		/// Setup the timer
+		/// </summary>
+		public void Setup(float elapsedTime, bool isPaused, TimeSpan timePlaying, TMP_Text timer, TimerType timerType, TimerUpdate timerUpdate, string text){
+			this.elapsedTime = defaultTime = elapsedTime;
 			this.isPaused = isPaused;
 			this.timePlaying = timePlaying;
 			this.timer = timer;
 			this.timerType = timerType;
+			this.timerUpdate = timerUpdate;
 			timer.text = text;
 		}
 
@@ -34,14 +42,14 @@ namespace SimpleTools.Timer{
 				}else{
 					switch (timerType){
 						case TimerType.Countdown:
-							elapsedTime -= Time.deltaTime;
+							elapsedTime -= timerUpdate == TimerUpdate.UnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
 							if(elapsedTime < 0f){
 								elapsedTime = 0f;
 								isPaused = true;
 							}
 							break;
 						case TimerType.Stopwatch:
-							elapsedTime += Time.deltaTime;
+							elapsedTime += timerUpdate == TimerUpdate.UnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
 							break;
 					}
 					timePlaying = TimeSpan.FromSeconds(elapsedTime);
@@ -51,25 +59,37 @@ namespace SimpleTools.Timer{
 			}
 		}
 
+		/// <summary>
+		/// Play or resume the timer
+		/// </summary>
 		public void Play(){
 			isPaused = false;
 			StartCoroutine(UpdateTimer());
 		}
 
+		/// <summary>
+		/// Pause the timer
+		/// </summary>
 		public void Stop(){
 			isPaused = true;
 		}
 
+		/// <summary>
+		/// Pause and sets the time to the defaultOne
+		/// </summary>
 		public void ResetTimer(){
 			isPaused = true;
-			elapsedTime = 0f;
+			elapsedTime = defaultTime;
 			timePlaying = TimeSpan.FromSeconds(elapsedTime);
 			timer.text = timePlaying.ToString("m':'ss'.'ff");
 		}
 
+		/// <summary>
+		/// Restarts the timer
+		/// </summary>
 		public void Restart(){
 			isPaused = false;
-			elapsedTime = 0f;
+			elapsedTime = defaultTime;
 			timePlaying = TimeSpan.FromSeconds(elapsedTime);
 			timer.text = timePlaying.ToString("m':'ss'.'ff");
 			StopAllCoroutines();
