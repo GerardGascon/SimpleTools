@@ -21,11 +21,11 @@ First install the TextMeshPro and Cinemachine into your Unity project
 
 ### Git Installation (Best way to get latest version)
 
-If you have git in your computer, you can open Package Manager inside Unity, select "Add package from Git url...", and paste link [https://github.com/Geri8/SimpleTools.git](https://github.com/Geri8/SimpleTools.git)
+If you have git in your computer, you can open Package Manager inside Unity, select "Add package from Git url...", and paste link [https://github.com/GerardGascon/SimpleTools.git](https://github.com/GerardGascon/SimpleTools.git)
 
 or
 
-Open the manifest.json file of your Unity project. Add "com.geri.simpletools": "[https://github.com/Geri8/SimpleTools.git](https://github.com/Geri8/SimpleTools.git)"
+Open the manifest.json file of your Unity project. Add "com.geri.simpletools": "[https://github.com/GerardGascon/SimpleTools.git](https://github.com/GerardGascon/SimpleTools.git)"
 
 ### Manual Installation
 
@@ -96,6 +96,24 @@ Loader.Load("Scene"); //Loads a scene with a specific name
 
 ```csharp
 ScreenShake.Shake(1f, .25f); //Shakes the camera with an intensity and duration
+```
+
+### Timer
+
+```csharp
+using SimpleTools.Timer;
+
+//Setup a stopwatch that updates at an unscaled time
+Timer timer = textMeshProText.SetupTimer(TimerType.Stopwatch, TimerUpdate.UnscaledTime);
+//Setup a clock
+Timer timer = textMeshProText.SetupTimer(TimerType.Clock, TimerUpdate.UnscaledTime);
+//Setup a countdown with the default time of 60 seconds
+Timer timer = textMeshProText.SetupTimer(TimerType.Countdown, TimerUpdate.UnscaledTime, 60f);
+
+timer.Play(); //Play or resume the timer
+timer.Stop(); //Pause the timer
+timer.ResetTimer(); //Pause and sets the time to the default one
+timer.Restart(); //Restarts the timer
 ```
 
 ### Editor
