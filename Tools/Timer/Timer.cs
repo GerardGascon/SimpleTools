@@ -75,7 +75,7 @@ namespace SimpleTools.Timer{
 		}
 
 		/// <summary>
-		/// Pause and sets the time to the defaultOne
+		/// Pause and sets the time to the default one
 		/// </summary>
 		public void ResetTimer(){
 			isPaused = true;
