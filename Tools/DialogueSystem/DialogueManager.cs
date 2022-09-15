@@ -28,12 +28,11 @@ namespace SimpleTools.DialogueSystem {
 		}
 
 		public bool Dialogue(Dialogue dialogue) {
-			return Dialogue(dialogue, "");
+			return Dialogue(dialogue, string.Empty);
 		}
 
 		public bool Dialogue(Dialogue dialogue, params string[] sounds) {
-			if (sounds != null)
-				dialogueVertexAnimator.SetAudioSourceGroup(sounds);
+			dialogueVertexAnimator.SetAudioSourceGroup(sounds);
 
 			if (!talking) {
 				sentences.Clear();

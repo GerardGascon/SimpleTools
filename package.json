@@ -1,6 +1,6 @@
 {
   "name": "com.geri.simpletools",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "displayName": "Simple Tools",
   "description": "This package contains simple tools to use in your project.",
   "unity": "2018.4",

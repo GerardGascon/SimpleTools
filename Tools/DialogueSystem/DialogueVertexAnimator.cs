@@ -216,7 +216,7 @@ namespace SimpleTools.DialogueSystem {
 			if (Time.unscaledTime - lastDialogueSound > timeUntilNextDialogueSound) {
 				timeUntilNextDialogueSound = UnityEngine.Random.Range(0.02f, 0.08f);
 				lastDialogueSound = Time.unscaledTime;
-				if (audioSourceGroup != null)
+				if (audioSourceGroup[0] != string.Empty)
 					AudioManager.AudioManager.instance.PlayRandomSound(audioSourceGroup);
 			}
 		}
