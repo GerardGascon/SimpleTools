@@ -94,13 +94,14 @@ DialogueSystem.instance.Dialogue(dialogue, "Sound1", "Sound2"); //Start/Continue
 
 Text commands:
 
-| <color=color></color> | Sets font color within tags |
-| --- | --- |
-| <size=percentage></size> | Sets font size within tags |
-| <sprite=index> | Draws a sprite from the TextMeshPro |
-| <p:[tiny,short,normal,long,read]> | Pauses during a period of time |
-| <anim:[wobble,wave,rainbow,shake]></anim> | Reproduces an animation |
-| <sp:number></sp> | Changes reveal speed |
+```html
+<color=color></color> --> Sets font color within tags
+<size=percentage></size> --> Sets font size within tags
+<sprite=index> --> Draws a sprite from the TextMeshPro
+<p:[tiny,short,normal,long,read]> --> Pauses during a period of time
+<anim:[wobble,wave,rainbow,shake]></anim> --> Reproduces an animation
+<sp:number></sp> --> Changes reveal speed
+```
 
 ### SceneManager
 
