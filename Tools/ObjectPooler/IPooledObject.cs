@@ -1,3 +1,5 @@
-﻿public interface IPooledObject{
-    void OnObjectSpawn();
+﻿namespace SimpleTools.ObjectPooler {
+    public interface IPooledObject {
+        void OnObjectSpawn();
+    }
 }

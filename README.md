@@ -12,7 +12,6 @@ This package will be updated once I find another useful tool or someone suggest 
 - Basic menu with **music and SFX sliders** as well as **resolution and quality dropdowns.**
 - An **object pooler** with the ability to create pools with an undetermined size.
 - A basic **scene manager** with a loading screen with progress bar.
-- A **timer** that is displayed inside a TextMeshPro object. 
 
 All of that comes with some editor menu items for creating all of that as fast as possible.
 
@@ -37,6 +36,8 @@ Download latest package from the Release section Import SimpleTools.unitypackage
 ### AudioManager
 
 ```csharp
+using SimpleTools.AudioManager;
+
 AudioManager.instance.Play("Name"); //Plays the sound with that name
 AudioManager.instance.Play("Name", 1f); //Starts playing the sound "Name" in 1 second
 AudioManager.instance.PlayOneShot("Name"); //Plays one shot of that sound (Useful for repeated sounds)
@@ -63,6 +64,8 @@ AudioManager.instance.FadeMutedOut("Name", 1f); //Fade Out a sound without stopp
 The SpawnFromPool function always return a GameObject
 
 ```csharp
+using SimpleTools.ObjectPooler;
+
 Pool pool; //The pool scriptable object goes here
 Pooler.CreatePools(pool); //Create the pool, without creating it you cannot spawn it
 Pool[] pools;
@@ -82,13 +85,28 @@ Pooler.SpawnFromPool("Name", Vector3.zero, Quaternion.identity, transform, true)
 The Dialogue function returns a bool (true if it's talking, false if it has ended)
 
 ```csharp
+using SimpleTools.DialogueSystem;
+
 Dialogue dialogue; //The dialogue scriptable object goes here
 DialogueSystem.instance.Dialogue(dialogue); //Start/Continue the dialogue
+DialogueSystem.instance.Dialogue(dialogue, "Sound1", "Sound2"); //Start/Continue the dialogue with a random set of sounds for the text reveal
 ```
+
+Text commands:
+
+| <color=color></color> | Sets font color within tags |
+| --- | --- |
+| <size=percentage></size> | Sets font size within tags |
+| <sprite=index> | Draws a sprite from the TextMeshPro |
+| <p:[tiny,short,normal,long,read]> | Pauses during a period of time |
+| <anim:[wobble,wave,rainbow,shake]></anim> | Reproduces an animation |
+| <sp:number></sp> | Changes reveal speed |
 
 ### SceneManager
 
 ```csharp
+using SimpleTools.SceneManagement;
+
 Loader.Load(0); //Loads a scene with a specific build index
 Loader.Load("Scene"); //Loads a scene with a specific name
 ```
@@ -96,6 +114,8 @@ Loader.Load("Scene"); //Loads a scene with a specific name
 ### ScreenShake
 
 ```csharp
+using SimpleTools.Cinemachine;
+
 ScreenShake.Shake(1f, .25f); //Shakes the camera with an intensity and duration
 ```
 

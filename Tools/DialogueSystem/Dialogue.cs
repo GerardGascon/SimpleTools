@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Character", menuName = "Simple Tools/Character", order = 11)]
-public class Dialogue : ScriptableObject{
+namespace SimpleTools.DialogueSystem {
+	[CreateAssetMenu(fileName = "New Dialogue", menuName = "Simple Tools/Dialogue", order = 11)]
+	public class Dialogue : ScriptableObject {
+		public DialogueBox[] sentences;
+	}
 
-    public bool displayName;
-    public string characterName;
-    
-    [Space]
-    public Sprite characterImage;
-    [TextArea] public string[] sentences;
+	[System.Serializable]
+	public class DialogueBox {
+		public bool displayName;
+		public string characterName;
+		public Sprite characterImage;
+		[TextArea(5, 10)] public string sentence;
+	}
 }

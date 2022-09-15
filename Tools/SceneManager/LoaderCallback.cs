@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 
-public class LoaderCallback : MonoBehaviour{
+namespace SimpleTools.SceneManagement {
+    public class LoaderCallback : MonoBehaviour {
 
-    bool isFirstUpdate = true;
+        bool isFirstUpdate = true;
 
-    // Update is called once per frame
-    void Update(){
-        if (isFirstUpdate){
-            isFirstUpdate = false;
-            Loader.LoaderCallback();
+        // Update is called once per frame
+        void Update() {
+            if (isFirstUpdate) {
+                isFirstUpdate = false;
+                Loader.LoaderCallback();
+            }
         }
     }
 }

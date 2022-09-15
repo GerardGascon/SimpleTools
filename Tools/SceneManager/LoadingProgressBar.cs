@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadingProgressBar : MonoBehaviour{
+namespace SimpleTools.SceneManagement {
+    public class LoadingProgressBar : MonoBehaviour {
 
-    Image image;
+        Image image;
 
-    // Start is called before the first frame update
-    void Awake(){
-        image = transform.GetComponent<Image>();
-    }
+        // Start is called before the first frame update
+        void Awake() {
+            image = transform.GetComponent<Image>();
+        }
 
-    // Update is called once per frame
-    void Update(){
-        image.fillAmount = Loader.GetLoadingProgress();
+        // Update is called once per frame
+        void Update() {
+            image.fillAmount = Loader.GetLoadingProgress();
+        }
     }
 }
