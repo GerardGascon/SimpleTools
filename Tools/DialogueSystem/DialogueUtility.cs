@@ -11,6 +11,8 @@ namespace SimpleTools.DialogueSystem {
 		const string REMAINDER_REGEX = "(.*?((?=>)|(/|$)))";
 		const string PAUSE_REGEX_STRING = "<p:(?<pause>" + REMAINDER_REGEX + ")>";
 		static readonly Regex pauseRegex = new Regex(PAUSE_REGEX_STRING);
+		const string SOUND_REGEX_STRING = "<snd:(?<sound>" + REMAINDER_REGEX + ")>";
+		static readonly Regex soundRegex = new Regex(SOUND_REGEX_STRING);
 		const string SPEED_REGEX_STRING = "<sp:(?<speed>" + REMAINDER_REGEX + ")>";
 		static readonly Regex speedRegex = new Regex(SPEED_REGEX_STRING);
 		const string ANIM_START_REGEX_STRING = "<anim:(?<anim>" + REMAINDER_REGEX + ")>";
@@ -31,6 +33,7 @@ namespace SimpleTools.DialogueSystem {
 			processedMessage = message;
 
 			processedMessage = HandlePauseTags(processedMessage, result);
+			processedMessage = HandleSoundTags(processedMessage, result);
 			processedMessage = HandleSpeedTags(processedMessage, result);
 			processedMessage = HandleAnimStartTags(processedMessage, result);
 			processedMessage = HandleAnimEndTags(processedMessage, result);
@@ -96,6 +99,20 @@ namespace SimpleTools.DialogueSystem {
 			processedMessage = Regex.Replace(processedMessage, PAUSE_REGEX_STRING, "");
 			return processedMessage;
 		}
+		static string HandleSoundTags(string processedMessage, List<DialogueCommand> result) {
+			MatchCollection soundMatches = soundRegex.Matches(processedMessage);
+			foreach (Match match in soundMatches) {
+				string val = match.Groups["sound"].Value;
+				string soundName = val;
+				result.Add(new DialogueCommand {
+					position = VisibleCharactersUpToIndex(processedMessage, match.Index),
+					type = DialogueCommandType.Sound,
+					stringValue = soundName
+				});
+			}
+			processedMessage = Regex.Replace(processedMessage, SOUND_REGEX_STRING, "");
+			return processedMessage;
+		}
 
 		static TextAnimationType GetTextAnimationType(string stringVal) {
 			TextAnimationType result;
@@ -139,7 +156,8 @@ namespace SimpleTools.DialogueSystem {
 		Pause,
 		TextSpeedChange,
 		AnimStart,
-		AnimEnd
+		AnimEnd,
+		Sound
 	}
 
 	public enum TextAnimationType {

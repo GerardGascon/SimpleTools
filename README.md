@@ -12,7 +12,6 @@ This package will be updated once I find another useful tool or someone suggest 
 - Basic menu with **music and SFX sliders** as well as **resolution and quality dropdowns.**
 - An **object pooler** with the ability to create pools with an undetermined size.
 - A basic **scene manager** with a loading screen with progress bar.
-- A simple **timer** that is displayed inside a TextMeshPro object.
 
 All of that comes with some editor menu items for creating all of that as fast as possible.
 
@@ -102,7 +101,6 @@ Text commands:
 <p:[tiny,short,normal,long,read]> --> Pauses during a period of time
 <anim:[wobble,wave,rainbow,shake]></anim> --> Reproduces an animation
 <sp:number></sp> --> Changes reveal speed
-<snd:soundname> --> Plays a sound from the Audio Manager
 ```
 
 ### SceneManager

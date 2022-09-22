@@ -134,6 +134,9 @@ namespace SimpleTools.DialogueSystem {
 						case DialogueCommandType.TextSpeedChange:
 							secondsPerCharacter = 1f / command.floatValue;
 							break;
+						case DialogueCommandType.Sound:
+							AudioManager.AudioManager.instance.PlayOneShot(command.stringValue);
+							break;
 					}
 					commands.RemoveAt(i);
 					i--;
