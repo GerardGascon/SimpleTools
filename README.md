@@ -101,6 +101,9 @@ Text commands:
 <p:[tiny,short,normal,long,read]> --> Pauses during a period of time
 <anim:[wobble,wave,rainbow,shake]></anim> --> Reproduces an animation
 <sp:number></sp> --> Changes reveal speed
+<snd:name> --> Plays a sound effect
+<stopmsc:name,time> --> Fades a music out
+<playmsc:name,time> --> Fades a music in
 ```
 
 ### SceneManager
