@@ -101,7 +101,6 @@ Text commands:
 <p:[tiny,short,normal,long,read]> --> Pauses during a period of time
 <anim:[wobble,wave,rainbow,shake]></anim> --> Reproduces an animation
 <sp:number></sp> --> Changes reveal speed
-<snd:soundname> --> Plays a sound from the AudioManager
 ```
 
 ### SceneManager

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
@@ -137,6 +138,17 @@ namespace SimpleTools.DialogueSystem {
 						case DialogueCommandType.Sound:
 							AudioManager.AudioManager.instance.PlayOneShot(command.stringValue);
 							break;
+						case DialogueCommandType.PlayMusic:
+							string[] split0 = command.stringValue.Split(',');
+							AudioManager.AudioManager.instance.FadeIn(split0[0], float.Parse(split0[1], CultureInfo.InvariantCulture));
+							break;
+						case DialogueCommandType.StopMusic:
+							string[] split1 = command.stringValue.Split(',');
+							for (int j = 0; j < split1.Length; j++) {
+								Debug.Log(split1[j]);
+							}
+							AudioManager.AudioManager.instance.FadeOut(split1[0], float.Parse(split1[1], CultureInfo.InvariantCulture));
+							break;
 					}
 					commands.RemoveAt(i);
 					i--;
@@ -194,7 +206,7 @@ namespace SimpleTools.DialogueSystem {
 				TextAnimInfo info = textAnimInfo[i];
 				if (charIndex >= info.startIndex && charIndex < info.endIndex) {
 					if (info.type == TextAnimationType.rainbow) {
-						color = Color.HSVToRGB(Mathf.Repeat((time + destinationVertice.x * RAINBOW_LENGTH_ADJUSTMENT), 1f), .6f, 1);
+						color = Color.HSVToRGB(Mathf.Repeat((time + destinationVertice.x * RAINBOW_LENGTH_ADJUSTMENT), 1f), .75f, 1);
 					}
 				}
 			}

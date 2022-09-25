@@ -13,6 +13,10 @@ namespace SimpleTools.DialogueSystem {
 		static readonly Regex pauseRegex = new Regex(PAUSE_REGEX_STRING);
 		const string SOUND_REGEX_STRING = "<snd:(?<sound>" + REMAINDER_REGEX + ")>";
 		static readonly Regex soundRegex = new Regex(SOUND_REGEX_STRING);
+		const string PLAYMUSIC_REGEX_STRING = "<playmsc:(?<playmusic>" + REMAINDER_REGEX + ")>";
+		static readonly Regex playMusicRegex = new Regex(PLAYMUSIC_REGEX_STRING);
+		const string STOPMUSIC_REGEX_STRING = "<stopmsc:(?<stopmusic>" + REMAINDER_REGEX + ")>";
+		static readonly Regex stopMusicRegex = new Regex(STOPMUSIC_REGEX_STRING);
 		const string SPEED_REGEX_STRING = "<sp:(?<speed>" + REMAINDER_REGEX + ")>";
 		static readonly Regex speedRegex = new Regex(SPEED_REGEX_STRING);
 		const string ANIM_START_REGEX_STRING = "<anim:(?<anim>" + REMAINDER_REGEX + ")>";
@@ -34,6 +38,8 @@ namespace SimpleTools.DialogueSystem {
 
 			processedMessage = HandlePauseTags(processedMessage, result);
 			processedMessage = HandleSoundTags(processedMessage, result);
+			processedMessage = HandlePlayMusicTags(processedMessage, result);
+			processedMessage = HandleStopMusicTags(processedMessage, result);
 			processedMessage = HandleSpeedTags(processedMessage, result);
 			processedMessage = HandleAnimStartTags(processedMessage, result);
 			processedMessage = HandleAnimEndTags(processedMessage, result);
@@ -113,6 +119,34 @@ namespace SimpleTools.DialogueSystem {
 			processedMessage = Regex.Replace(processedMessage, SOUND_REGEX_STRING, "");
 			return processedMessage;
 		}
+		static string HandlePlayMusicTags(string processedMessage, List<DialogueCommand> result) {
+			MatchCollection playMatches = playMusicRegex.Matches(processedMessage);
+			foreach (Match match in playMatches) {
+				string val = match.Groups["playmusic"].Value;
+				string functionName = val;
+				result.Add(new DialogueCommand {
+					position = VisibleCharactersUpToIndex(processedMessage, match.Index),
+					type = DialogueCommandType.PlayMusic,
+					stringValue = functionName
+				});
+			}
+			processedMessage = Regex.Replace(processedMessage, PLAYMUSIC_REGEX_STRING, "");
+			return processedMessage;
+		}
+		static string HandleStopMusicTags(string processedMessage, List<DialogueCommand> result) {
+			MatchCollection stopMatches = stopMusicRegex.Matches(processedMessage);
+			foreach (Match match in stopMatches) {
+				string val = match.Groups["stopmusic"].Value;
+				string functionName = val;
+				result.Add(new DialogueCommand {
+					position = VisibleCharactersUpToIndex(processedMessage, match.Index),
+					type = DialogueCommandType.StopMusic,
+					stringValue = functionName
+				});
+			}
+			processedMessage = Regex.Replace(processedMessage, STOPMUSIC_REGEX_STRING, "");
+			return processedMessage;
+		}
 
 		static TextAnimationType GetTextAnimationType(string stringVal) {
 			TextAnimationType result;
@@ -157,7 +191,9 @@ namespace SimpleTools.DialogueSystem {
 		TextSpeedChange,
 		AnimStart,
 		AnimEnd,
-		Sound
+		Sound,
+		PlayMusic,
+		StopMusic
 	}
 
 	public enum TextAnimationType {
