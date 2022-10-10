@@ -2,8 +2,6 @@
 
 This package contains simple tools to use in your project.
 
-This package will be updated once I find another useful tool or someone suggest me one.
-
 ## Features
 
 - **AudioManager** with Play, Pause and most of the other basic things, as well as some effects like FadeIn or FadeOut.
@@ -12,6 +10,8 @@ This package will be updated once I find another useful tool or someone suggest 
 - Basic menu with **music and SFX sliders** as well as **resolution and quality dropdowns.**
 - An **object pooler** with the ability to create pools with an undetermined size.
 - A basic **scene manager** with a loading screen with progress bar.
+- A simple **timer** that allows you to easily create clocks, countdowns and stopwatches with TextMeshPro
+- An **auto-save** feature to reduce the chances of loosing data on crashes.
 
 All of that comes with some editor menu items for creating all of that as fast as possible.
 
@@ -33,7 +33,7 @@ Download latest package from the Release section Import SimpleTools.unitypackage
 
 ## Usage
 
-### AudioManager
+### **AudioManager**
 
 ```csharp
 using SimpleTools.AudioManager;
@@ -42,6 +42,7 @@ AudioManager.instance.Play("Name"); //Plays the sound with that name
 AudioManager.instance.Play("Name", 1f); //Starts playing the sound "Name" in 1 second
 AudioManager.instance.PlayOneShot("Name"); //Plays one shot of that sound (Useful for repeated sounds)
 AudioManager.instance.PlayWithIntro("Intro", "Loop"); //Plays the intro and then the loop
+AudioManager.instance.PlayRandomSound("Name1", "Name2", "Name3"); // Plays one shot of a random sound
 
 AudioManager.instance.Pause("Name"); //Pauses the sound
 AudioManager.instance.UnPause("Name"); //Unpauses the sound
@@ -59,7 +60,7 @@ AudioManager.instance.FadeMutedIn("Name", 1f); //Fade In a muted sound with a sp
 AudioManager.instance.FadeMutedOut("Name", 1f); //Fade Out a sound without stopping it
 ```
 
-### ObjectPooler
+### **ObjectPooler**
 
 The SpawnFromPool function always return a GameObject
 
@@ -80,7 +81,7 @@ Pooler.SpawnFromPool("Name", Vector3.zero, transform, true); //Spawn into a spec
 Pooler.SpawnFromPool("Name", Vector3.zero, Quaternion.identity, transform, true); //Spawn into a specific position, rotation, parent and instantiate in worldSpace or not
 ```
 
-### Dialogue System
+### **Dialogue System**
 
 The Dialogue function returns a bool (true if it's talking, false if it has ended)
 
@@ -88,13 +89,13 @@ The Dialogue function returns a bool (true if it's talking, false if it has ende
 using SimpleTools.DialogueSystem;
 
 Dialogue dialogue; //The dialogue scriptable object goes here
-DialogueSystem.instance.Dialogue(dialogue); //Start/Continue the dialogue
-DialogueSystem.instance.Dialogue(dialogue, "Sound1", "Sound2"); //Start/Continue the dialogue with a random set of sounds for the text reveal
+DialogueManager.instance.Dialogue(dialogue); //Start/Continue the dialogue
+DialogueManager.instance.Dialogue(dialogue, "Sound1", "Sound2"); //Start/Continue the dialogue with a random set of sounds for the text reveal
 ```
 
 Text commands:
 
-```html
+```
 <color=color></color> --> Sets font color within tags
 <size=percentage></size> --> Sets font size within tags
 <sprite=index> --> Draws a sprite from the TextMeshPro
@@ -106,7 +107,7 @@ Text commands:
 <playmsc:name,time> --> Fades a music in
 ```
 
-### SceneManager
+### **SceneManager**
 
 ```csharp
 using SimpleTools.SceneManagement;
@@ -115,7 +116,7 @@ Loader.Load(0); //Loads a scene with a specific build index
 Loader.Load("Scene"); //Loads a scene with a specific name
 ```
 
-### ScreenShake
+### **ScreenShake**
 
 ```csharp
 using SimpleTools.Cinemachine;
@@ -123,7 +124,7 @@ using SimpleTools.Cinemachine;
 ScreenShake.Shake(1f, .25f); //Shakes the camera with an intensity and duration
 ```
 
-### Timer
+### **Timer**
 
 ```csharp
 using SimpleTools.Timer;
@@ -141,7 +142,11 @@ timer.ResetTimer(); //Pause and sets the time to the default one
 timer.Restart(); //Restarts the timer
 ```
 
-### Editor
+### **Auto-save**
+
+To enable auto-save you have access the menu from the top bar, *Simple Tools>Auto Save Configuration.* You can auto-save every several minutes or auto-save every time you enter play mode.
+
+### **Editor**
 
 You can easily set up some things by right clicking in your Project Tab and then selecting Tools and clicking on the one you want to create.
 

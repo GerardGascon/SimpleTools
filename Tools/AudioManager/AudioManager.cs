@@ -47,6 +47,7 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to play a sound with a specific name
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="name" type="string">The name of the sound</param>
 		public void Play(string name) {
 			Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
 			if (s == null) {
@@ -60,6 +61,8 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to play a sound with a specific name and with a certain delay
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="name" type="string">The name of the sound</param>
+		/// <param name="delay" type="float">The delay in seconds</param>
 		public void Play(string name, float delay) {
 			Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
 			if (s == null) {
@@ -73,6 +76,7 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to play one shot of a sound with a specific name
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="name" type="string">The name of the sound</param>
 		public void PlayOneShot(string name) {
 			Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
 			if (s == null) {
@@ -86,6 +90,8 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to play an intro song and then start playing the song loop
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="intro" type="string">The name of the intro song</param>
+		/// <param name="song" type="string">The name of the song loop</param>
 		public void PlayWithIntro(string intro, string song) {
 			Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == intro);
 			if (s == null) {
@@ -102,6 +108,7 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to play one shot of a random sound within a list
 		/// <para>They have to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="names" type="string[]">The names of the sounds</param>
 		public void PlayRandomSound(params string[] names) {
 			int random = UnityEngine.Random.Range(0, names.Length);
 			PlayOneShot(names[random]);
@@ -111,6 +118,7 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to pause a sound with a specific name
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="name" type="string">The name of the sound</param>
 		public void Pause(string name) {
 			Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
 			if (s == null) {
@@ -124,6 +132,7 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to unpause a sound with a specific name
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="name" type="string">The name of the sound</param>
 		public void UnPause(string name) {
 			Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
 			if (s == null) {
@@ -139,6 +148,7 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to stop a sound with a specific name
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="name" type="string">The name of the sound</param>
 		public void Stop(string name) {
 			Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
 			if (s == null) {
@@ -163,6 +173,8 @@ namespace SimpleTools.AudioManager {
 		/// <summary>This function returns the AudioSource that contains a specific sound
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="name">The name of the sound</param>
+		/// <returns>The AudioSource in the scene</returns>
 		public AudioSource GetSource(string name) {
 			Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
 			if (s == null) {
@@ -175,6 +187,8 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to start playing a sound with a fade in
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="name" type="string">The name of the sound</param>
+		/// <param name="duration" type="float">The duration of the fade in</param>
 		public void FadeIn(string name, float duration) {
 			StartCoroutine(FadeInCoroutine(name, duration));
 		}
@@ -195,6 +209,8 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to stop playing a sound with a fade out
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="name" type="string">The name of the sound</param>
+		/// <param name="duration" type="float">The duration of the fade out</param>
 		public void FadeOut(string name, float duration) {
 			StartCoroutine(FadeOutCoroutine(name, duration));
 		}
@@ -217,6 +233,7 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to start playing a sound muted
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="name" type="string">The name of the sound</param>
 		public void PlayMuted(string name) {
 			Sounds.List s = Array.Find(soundList.sounds, sound => sound.name == name);
 			if (s == null) {
@@ -231,6 +248,8 @@ namespace SimpleTools.AudioManager {
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// <para>WARNING: If the PlayMuted hasn't been called before, this function won't work</para>
 		/// </summary>
+		/// <param name="name" type="string">The name of the sound</param>
+		/// <param name="duration">The duration of the fade in</param>
 		public void FadeMutedIn(string name, float duration) {
 			StartCoroutine(FadeMutedInCoroutine(name, duration));
 		}
@@ -250,6 +269,8 @@ namespace SimpleTools.AudioManager {
 		/// <summary>Use this to fade out a sound and keep playing that muted
 		/// <para>It has to be in the Sound asset referenced in the AudioManager instance</para>
 		/// </summary>
+		/// <param name="name" type="string">The name of the sound</param>
+		/// <param name="duration">The duration of the fade out</param>
 		public void FadeMutedOut(string name, float duration) {
 			StartCoroutine(FadeMutedOutCoroutine(name, duration));
 		}

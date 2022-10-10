@@ -14,7 +14,7 @@ namespace SimpleTools.DialogueSystem {
 		Queue<Sprite> characterImages;
 		bool talking;
 
-		public DialogueItems dialogueItems;
+		public DialogueManagerItems dialogueItems;
 
 		public static DialogueManager instance;
 		void Awake() {
@@ -27,10 +27,21 @@ namespace SimpleTools.DialogueSystem {
 			dialogueVertexAnimator = new DialogueVertexAnimator(dialogueItems.textBox);
 		}
 
+		/// <summary>
+		/// This is the main function to call to start a dialogue.
+		/// </summary>
+		/// <param name="dialogue">The dialogue to start.</param>
+		/// <returns>A bool that is false if the dialogue has finished and true if it hasn't.</returns>
 		public bool Dialogue(Dialogue dialogue) {
 			return Dialogue(dialogue, string.Empty);
 		}
 
+		/// <summary>
+		/// This is the main function to call to start a dialogue.
+		/// </summary>
+		/// <param name="dialogue">The dialogue to start.</param>
+		/// <param name="sounds">The sounds from the AudioManager that will be played on character reveal.</param>
+		/// <returns>A bool that is false if the dialogue has finished and true if it hasn't.</returns>
 		public bool Dialogue(Dialogue dialogue, params string[] sounds) {
 			dialogueVertexAnimator.SetAudioSourceGroup(sounds);
 
@@ -49,6 +60,8 @@ namespace SimpleTools.DialogueSystem {
 				talking = true;
 
 				if (sentences.Count == 0) {
+					if (dialogueVertexAnimator.IsMessageAnimating())
+						return true;
 					talking = false;
 					return false;
 				}
@@ -66,6 +79,8 @@ namespace SimpleTools.DialogueSystem {
 				return true;
 			} else {
 				if (sentences.Count == 0) {
+					if (dialogueVertexAnimator.IsMessageAnimating())
+						return true;
 					talking = false;
 					return false;
 				}
@@ -102,7 +117,7 @@ namespace SimpleTools.DialogueSystem {
 	}
 
 	[System.Serializable]
-	public struct DialogueItems {
+	public struct DialogueManagerItems {
 		public Image characterImage;
 		public TMP_Text characterName;
 		public TMP_Text textBox;
